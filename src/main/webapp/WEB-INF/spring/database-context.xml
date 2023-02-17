@@ -14,7 +14,7 @@
 		<property name="username" value="${username}"></property>
 		<property name="password" value="${password}"></property>
 		<property name="url" value="${url}"></property>
-		<property name="driverClassName" value="${dirver}"></property>
+		<property name="driverClassName" value="${driver}"></property>
 	</bean>
 	
 	<!--Connection, sql문이 있는 xml파일의 위치, config 파일의 위치를 알려줌 --> 

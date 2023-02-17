@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+	<mapper namespace="com.mhj.s2.qna.QNADAO">
+		
+		<!-- SELECT -->
+		<select id="getQNAList" parameterType="QNADTO" resultType="QNADTO">
+			SELECT QNANUM, QNATITLE, QNAWRITER, QNADATE, QNAHIT
+			FROM QNA
+			ORDER BY QNANUM DESC
+		</select>
+		<select id="getQNADetail" parameterType="QNADTO" resultType="QNADTO">
+			SELECT *
+			FROM QNA
+			WHERE QNANUM = #{qnaNum}
+		</select>
+		
+		<!-- INSERT -->
+		<insert id="setQNAAdd" parameterType="QNADTO">
+			INSERT INTO QNA
+			VALUES (QNA_SEQ.NEXTVAL, #{qnaTitle}, #{qnaContents}, #{qnaWriter}, #{qnaDate}, #{qnaHit})
+		</insert>
+		<insert id="setQNAFileAdd" parameterType="QNAFileDTO">
+			INSERT INTO QNAFILE
+			VALUES (QNAFILE_SEQ.NEXTVAL, #{qnaFileNum}, #{qnaFileName}, #{qnaOriName})
+		</insert>
+		
+		<!-- UPDATE -->
+		<update id="setQNAUpdate" parameterType="QNADTO">
+			UPDATE QNA
+			SET QNATITLE = #{qnaTitle}, QNACONTENTS = #{qnaContents}
+			WHERE QNANUM = #{qnaNum}
+		</update>
+		
+		<!-- DELETE -->
+		<delete id="setQNADelete" parameterType="Long">
+			DELETE QNA
+			WHERE QNANUM = #{qnaNum}
+		</delete>
+		
+	</mapper>
