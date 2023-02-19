@@ -5,27 +5,82 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 	<mapper namespace="com.mhj.s2.qna.QNADAO">
+	
+		<!-- SQL -->
+		<sql id="searchCondition">
+			WHERE
+			<choose>
+				<when test="condition == 'title'">
+					QNATITLE
+				</when>
+				<when test="condition == 'contents'">
+					QNACONTENTS
+				</when>
+				<otherwise>
+					QNAWRITER
+				</otherwise>
+			</choose>
+			LIKE '%' || #{search} || '%'
+		</sql>
 		
 		<!-- SELECT -->
-		<select id="getQNAList" parameterType="QNADTO" resultType="QNADTO">
-			SELECT QNANUM, QNATITLE, QNAWRITER, QNADATE, QNAHIT
-			FROM QNA
-			ORDER BY QNANUM DESC
+		<select id="getQNAList" parameterType="Pagination" resultType="QNADTO">
+			SELECT * FROM
+				(
+					SELECT ROWNUM R, B.* FROM
+						(
+							SELECT * FROM QNA
+							<include refid="searchCondition"></include>
+							ORDER BY QNANUM DESC
+						)
+				B)
+			WHERE R BETWEEN #{startRow} AND #{lastRow}
 		</select>
+		
 		<select id="getQNADetail" parameterType="QNADTO" resultType="QNADTO">
 			SELECT *
 			FROM QNA
+				LEFT OUTER JOIN
+				QNAFILE
+				USING (QNANUM)
 			WHERE QNANUM = #{qnaNum}
+		</select>
+		
+		<resultMap type="QNADTO" id="QNAFileDetail">
+			<!-- PK -->
+			<id column="QNANUM" property="qnaNum"/>
+			<!-- PK 제외 나머지 -->
+			<result column="QNATITLE" property="qnaTitle"/>
+			<result column="QNACONTENTS" property="qnaContents"/>
+			<result column="QNAWRITER" property="qnaWriter"/>
+			<result column="QNADATE" property="qnaDate"/>
+			<result column="QNAHIT" property="qnaHit"/>
+			<!-- 1:1 -->
+			<association property="QNAFileDTO" javaType="QNAFileDTO">
+				<!-- PK -->
+				<id column="QNAFILENUM" property="qnaFileNum"/>
+				<!-- PK 제외 나머지 -->
+				<result column="QNAFILENAME" property="qnaFileName"/>
+				<result column="QNAORINAME" property="qnaOriName"/>
+			</association>
+		</resultMap>
+		
+		<select id="getQNACount" parameterType="Pagination" resultType="LONG">
+			SELECT COUNT(QNANUM) FROM QNA
+			<include refid="searchCondition"></include>
 		</select>
 		
 		<!-- INSERT -->
 		<insert id="setQNAAdd" parameterType="QNADTO">
+			<selectKey keyProperty="qnaNum" resultType="Long" order="BEFORE">
+				SELECT QNA_SEQ.NEXTVAL FROM DUAL
+			</selectKey>
 			INSERT INTO QNA
-			VALUES (QNA_SEQ.NEXTVAL, #{qnaTitle}, #{qnaContents}, #{qnaWriter}, #{qnaDate}, #{qnaHit})
+			VALUES (#{qnaNum}, #{qnaTitle}, #{qnaContents}, #{qnaWriter}, #{qnaDate}, #{qnaHit})
 		</insert>
 		<insert id="setQNAFileAdd" parameterType="QNAFileDTO">
 			INSERT INTO QNAFILE
-			VALUES (QNAFILE_SEQ.NEXTVAL, #{qnaFileNum}, #{qnaFileName}, #{qnaOriName})
+			VALUES (QNAFILE_SEQ.NEXTVAL, #{qnaNum}, #{qnaFileName}, #{qnaOriName})
 		</insert>
 		
 		<!-- UPDATE -->

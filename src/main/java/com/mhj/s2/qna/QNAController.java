@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mhj.s2.util.Pagination;
+
 @Controller
 @RequestMapping(value="/qna/*")
 public class QNAController {
@@ -21,13 +23,14 @@ public class QNAController {
 	/** SELECT **/
 	//List
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView getQNAList() throws Exception {
+	public ModelAndView getQNAList(Pagination pagination) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		List<QNADTO> ar = qnaService.getQNAList();
+		List<QNADTO> ar = qnaService.getQNAList(pagination);
 		
 		modelAndView.setViewName("qna/list");
 		modelAndView.addObject("list", ar);
+		modelAndView.addObject("pagination", pagination);
 		
 		return modelAndView;
 	}
@@ -61,7 +64,8 @@ public class QNAController {
 	public ModelAndView setQNAAdd(QNADTO qnaDTO, MultipartFile multipartFile, HttpSession session) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		int result = qnaService.setQNAAdd(qnaDTO);
+		int result = qnaService.setQNAAdd(qnaDTO, multipartFile);
+		
 		modelAndView.setViewName("redirect:./list");
 		
 		return modelAndView;

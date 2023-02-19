@@ -2,23 +2,23 @@ package com.mhj.s2.qna;
 
 public class QNAFileDTO {
 	
-	private Long qnaNum;
 	private Long qnaFileNum;
+	private Long qnaNum;
 	private String qnaFileName;
 	private String qnaOriName;
 
 	//Getter, Setter
-	public Long getQnaNum() {
-		return qnaNum;
-	}
-	public void setQnaNum(Long qnaNum) {
-		this.qnaNum = qnaNum;
-	}
 	public Long getQnaFileNum() {
 		return qnaFileNum;
 	}
 	public void setQnaFileNum(Long qnaFileNum) {
 		this.qnaFileNum = qnaFileNum;
+	}
+	public Long getQnaNum() {
+		return qnaNum;
+	}
+	public void setQnaNum(Long qnaNum) {
+		this.qnaNum = qnaNum;
 	}
 	public String getQnaFileName() {
 		return qnaFileName;

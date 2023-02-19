@@ -10,5 +10,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		
 			<typeAlias type="com.mhj.s2.qna.QNADTO" alias="QNADTO"/>
 			<typeAlias type="com.mhj.s2.qna.QNAFileDTO" alias="QNAFileDTO"/>
+			
+			<typeAlias type="com.mhj.s2.util.Pagination" alias="Pagination"/>
 		</typeAliases>
 	</configuration>
