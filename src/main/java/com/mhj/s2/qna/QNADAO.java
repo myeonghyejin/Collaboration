@@ -3,6 +3,7 @@ package com.mhj.s2.qna;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mhj.s2.util.Pagination;
@@ -10,13 +11,15 @@ import com.mhj.s2.util.Pagination;
 @Repository
 public class QNADAO {
 	
+	@Autowired
 	private SqlSession sqlSession;
+	
 	private final String NAMESAPCE = "com.mhj.s2.qna.QNADAO.";
 	
 	/** SELECT **/
 	//List
-	public List<QNADTO> getQNAList() throws Exception {
-		return sqlSession.selectList(NAMESAPCE + "getQNAList");
+	public List<QNADTO> getQNAList(Pagination pagination) throws Exception {
+		return sqlSession.selectList(NAMESAPCE + "getQNAList", pagination);
 	}
 	
 	//Detail

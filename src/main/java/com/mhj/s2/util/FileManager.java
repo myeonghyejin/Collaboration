@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileManager {
 	
-	public String FileSave(String realPath, MultipartFile multipartFile) throws Exception {
+	public String fileSave(String realPath, MultipartFile multipartFile) throws Exception {
 		//3. 저장할 폴더의 정보를 갖고 있는 File 객체 선언
 		File file = new File(realPath);
 		

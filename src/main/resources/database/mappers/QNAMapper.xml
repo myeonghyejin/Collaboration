@@ -8,6 +8,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 		<!-- SQL -->
 		<sql id="searchCondition">
+			<if test="condition == 'title'">
+				WHERE QNATITLE
+				LIKE '%' || #{search} || '%'
+			</if>
+			<if test="condition == 'contents'">
+				WHERE QNACONTENTS
+				LIKE '%' || #{search} || '%'
+			</if>
+			<if test="condition == 'writer'">
+				WHERE QNAWRITER
+				LIKE '%' || #{search} || '%'
+			</if>
+		</sql>
+		<sql id="searchCondition2">
 			WHERE
 			<choose>
 				<when test="condition == 'title'">
@@ -24,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</sql>
 		
 		<!-- SELECT -->
-		<select id="getQNAList" parameterType="Pagination" resultType="QNADTO">
+		<select id="getQNAList" parameterType="Pagination" resultMap="QNAFileDetail">
 			SELECT * FROM
 				(
 					SELECT ROWNUM R, B.* FROM
@@ -37,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE R BETWEEN #{startRow} AND #{lastRow}
 		</select>
 		
-		<select id="getQNADetail" parameterType="QNADTO" resultType="QNADTO">
+		<select id="getQNADetail" parameterType="QNADTO" resultMap="QNAFileDetail">
 			SELECT *
 			FROM QNA
 				LEFT OUTER JOIN
@@ -56,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result column="QNADATE" property="qnaDate"/>
 			<result column="QNAHIT" property="qnaHit"/>
 			<!-- 1:1 -->
-			<association property="QNAFileDTO" javaType="QNAFileDTO">
+			<association property="qnaFileDTO" javaType="QNAFileDTO">
 				<!-- PK -->
 				<id column="QNAFILENUM" property="qnaFileNum"/>
 				<!-- PK 제외 나머지 -->
@@ -65,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</association>
 		</resultMap>
 		
-		<select id="getQNACount" parameterType="Pagination" resultType="LONG">
+		<select id="getQNACount" parameterType="Pagination" resultType="Long">
 			SELECT COUNT(QNANUM) FROM QNA
 			<include refid="searchCondition"></include>
 		</select>
@@ -78,6 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			INSERT INTO QNA
 			VALUES (#{qnaNum}, #{qnaTitle}, #{qnaContents}, #{qnaWriter}, #{qnaDate}, #{qnaHit})
 		</insert>
+		
 		<insert id="setQNAFileAdd" parameterType="QNAFileDTO">
 			INSERT INTO QNAFILE
 			VALUES (QNAFILE_SEQ.NEXTVAL, #{qnaNum}, #{qnaFileName}, #{qnaOriName})

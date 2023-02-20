@@ -35,6 +35,11 @@
 				<input type="file" class="form-control" id="files" name="multipartFile">
 			</div>	
 		</div>
+		
+	<!-- QNA 등록 버튼 -->
+	<div class="row justify-content-center mx-auto">
+		<button type="submit" class="btn btn-primary col-2">등록</button>
+	</div>
 	</form>
 
 </div>

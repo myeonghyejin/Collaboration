@@ -31,7 +31,7 @@ public class QNAService {
 		pagination.Row();
 		pagination.Pagination(totalCount);
 		
-		return qnaDAO.getQNAList();
+		return qnaDAO.getQNAList(pagination);
 	}
 	
 	//Detail
@@ -49,13 +49,13 @@ public class QNAService {
 			//1. 저장할 폴더 설정
 			//2. 저장할 폴더의 실제 경로 반환
 			String realPath = servletContext.getRealPath("resources/upload/qna");
-			String fileName = fileManager.FileSave(realPath, multipartFile);
+			String fileName = fileManager.fileSave(realPath, multipartFile);
 			
 			//(2) DB에 저장
 			QNAFileDTO qnaFileDTO = new QNAFileDTO();
-			qnaFileDTO.setQnaNum(qnaDTO.getQnaNum());
 			qnaFileDTO.setQnaFileName(fileName);
 			qnaFileDTO.setQnaOriName(multipartFile.getOriginalFilename());
+			qnaFileDTO.setQnaNum(qnaDTO.getQnaNum());
 			
 			result = qnaDAO.setQNAFileAdd(qnaFileDTO);
 		}

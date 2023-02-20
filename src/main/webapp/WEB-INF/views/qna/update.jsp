@@ -37,7 +37,7 @@
 
 	<!-- QNA 등록 버튼 -->
 	<div class="row justify-content-center mx-auto">
-		<button type="submit" class="btn btn-primary col-2">QNA 등록</button>
+		<button type="submit" class="btn btn-primary col-2">수정</button>
 	</div>
 
 </div>

@@ -122,7 +122,7 @@ public class Pagination {
 		this.lastRow = this.getPage() * this.getPerPage();
 	}
 	
-	public void Pagination(Long totalCount) throws Exception {
+	public void Pagination(Long totalCount) {
 		//1. 총 row의 개수 구하기
 		//매개 변수로 totalCount 선언
 		
@@ -192,6 +192,9 @@ public class Pagination {
 	}
 
 	public String getSearch() {
+		if(search == null) {
+			search = "";
+		}
 		return search;
 	}
 

@@ -11,6 +11,8 @@ public class QNADTO {
 	private Date qnaDate;
 	private Long qnaHit;
 	
+	private QNAFileDTO qnaFileDTO;
+	
 	//Getter, Setter
 	public Long getQnaNum() {
 		return qnaNum;

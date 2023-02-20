@@ -25,9 +25,11 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>상품명</th>
-					<th>이자율</th>
-					<th>판매 여부</th>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>날짜</th>
+					<th>조회수</th>
 				</tr>
 			</thead>
 			<tbody class="table-group-divider">
@@ -38,7 +40,6 @@
 						<td class="tdl_td">${DTO.qnaWriter}</td>
 						<td class="tdl_td">${DTO.qnaDate}</td>
 						<td class="tdl_td">${DTO.qnaHit}</td>
-						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -104,7 +105,7 @@
 	
 	<!-- QNA 등록 버튼 -->
 	<div class="row justify-content-center mx-auto">
-		<a href=./add class="btn btn-primary col-2">QNA 등록</a>
+		<a href=./add class="btn btn-primary col-2">작성</a>
 	</div>
 
 </div>
