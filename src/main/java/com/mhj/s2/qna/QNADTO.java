@@ -50,5 +50,12 @@ public class QNADTO {
 	public void setQnaHit(Long qnaHit) {
 		this.qnaHit = qnaHit;
 	}
+	
+	public QNAFileDTO getQnaFileDTO() {
+		return qnaFileDTO;
+	}
+	public void setQnaFileDTO(QNAFileDTO qnaFileDTO) {
+		this.qnaFileDTO = qnaFileDTO;
+	}
 
 }

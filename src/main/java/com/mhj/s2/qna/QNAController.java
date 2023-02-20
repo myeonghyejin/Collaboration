@@ -43,7 +43,7 @@ public class QNAController {
 		qnaDTO = qnaService.getQNADetail(qnaDTO);
 		
 		modelAndView.setViewName("qna/detail");
-		modelAndView.addObject("detail", qnaDTO);
+		modelAndView.addObject("DTO", qnaDTO);
 		
 		return modelAndView;
 	}
@@ -61,7 +61,7 @@ public class QNAController {
 	
 	//Add (DB에 INSERT)
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ModelAndView setQNAAdd(QNADTO qnaDTO, MultipartFile multipartFile, HttpSession session) throws Exception {
+	public ModelAndView setQNAAdd(QNADTO qnaDTO, MultipartFile multipartFile, HttpSession Session) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		int result = qnaService.setQNAAdd(qnaDTO, multipartFile);
@@ -91,7 +91,7 @@ public class QNAController {
 		
 		int result = qnaService.setQNAUpdate(qnaDTO);
 		
-		modelAndView.setViewName("redirect:./detail?qnaNum" + qnaDTO.getQnaNum().toString());
+		modelAndView.setViewName("redirect:./detail?qnaNum=" + qnaDTO.getQnaNum().toString());
 		
 		return modelAndView;
 	}

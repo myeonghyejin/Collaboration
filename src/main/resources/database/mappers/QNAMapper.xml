@@ -90,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				SELECT QNA_SEQ.NEXTVAL FROM DUAL
 			</selectKey>
 			INSERT INTO QNA
-			VALUES (#{qnaNum}, #{qnaTitle}, #{qnaContents}, #{qnaWriter}, #{qnaDate}, #{qnaHit})
+			VALUES (#{qnaNum}, #{qnaTitle}, #{qnaContents}, #{qnaWriter}, SYSDATE, 0)
 		</insert>
 		
 		<insert id="setQNAFileAdd" parameterType="QNAFileDTO">

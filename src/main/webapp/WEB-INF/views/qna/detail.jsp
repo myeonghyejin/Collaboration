@@ -32,10 +32,9 @@
 				<h3>조회수 : ${DTO.qnaHit}</h3>
 				<div>
 					<c:if test="${not empty DTO.qnaFileDTO}">
-						<img alt="" src="../resources/upload/qna/${DTO.qnaFileDTO.fileName}">
+						<img alt="" src="../resources/upload/qna/${DTO.qnaFileDTO.qnaFileName}">
 					</c:if>
 				</div>
-				<a href="./delete?qnaNum=${DTO.qnaNum}">삭제</a>
 			</c:when>
 			<c:otherwise>
 				<h3>존재하지 않는 게시글입니다.</h3>
@@ -44,9 +43,10 @@
 	</div>
 	
 	<!-- Buttons -->
-	<div class="row justify-content-center mx-auto">
-		<a href=./update?qnaNum=${DTO.qnaNum} class="btn btn-primary col-2">수정</a>
-		<a href=./list class="btn btn-primary col-2">목록</a>
+	<div class="row col-md-4 justify-content-center mx-auto">
+		<a href=./update?qnaNum=${DTO.qnaNum} class="btn btn-primary col-2 mx-1">수정</a>
+		<a href=./delete?qnaNum=${DTO.qnaNum} class="btn btn-primary col-2 mx-1">삭제</a>
+		<a href=./list class="btn btn-primary col-2 mx-1">목록</a>
 	</div>
 
 </div>

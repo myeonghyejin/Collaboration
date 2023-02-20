@@ -23,12 +23,16 @@
 	<form action="./add" method = "post" enctype="multipart/form-data">
 		<div class="row col-md-4 mx-auto my-5">
 			<div class="fw-bold fs-5 col-12">
-				<p>이름</p>
-				<input type="text" name="qnaTitle" class="form-control" id="exampleFormControlInput1" placeholder="제목 입력"><br>
+				<label for="title" class="form-label fw-bold fs-6">제목</label>
+				<input type="text" name="qnaTitle" class="form-control" id="title" placeholder="제목 입력"><br>
 			</div>
 			<div class="fw-bold fs-5 col-12">
-				<p>상세 정보</lp>
-				<textarea name="qnaContents" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="내용 입력"></textarea><br>
+				<label for="writer" class="form-label fw-bold fs-6">작성자</label>
+				<input type="text" name="qnaWriter" class="form-control" id="writer" placeholder="닉네임 입력"><br>
+			</div>
+			<div class="fw-bold fs-5 col-12">
+				<label for="contents" class="form-label fw-bold fs-6">내용</label>
+				<textarea name="qnaContents" class="form-control" id="contents" rows="3" placeholder="내용 입력"></textarea><br>
 			</div>	
 			<div class="fw-bold fs-5 col-12 mt-3">
 				<label for="files" class="form-label">File</label>

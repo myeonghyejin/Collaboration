@@ -22,23 +22,22 @@
 	
 	<!-- Contents -->
 	<form action="./update" method="post">
+		<input type="hidden" name="qnaNum" value="${DTO.qnaNum}">
 		<div class="row col-md-4 mx-auto my-5">
-			<input type="hidden" name="qnaNum" value="${DTO.qnaNum}">
 			<div class="fw-bold fs-5 col-12">
-				<p>이름</p>
-				<input type="text" name="qnaTitle" value="${DTO.qnaTitle}" class="form-control" id="exampleFormControlInput1"><br>
+				<label for="title" class="form-label fw-bold fs-6">제목</label>
+				<input type="text" name="qnaTitle" value="${DTO.qnaTitle}" class="form-control" id="title"><br>
 			</div>
 			<div class="fw-bold fs-5 col-12">
-				<p>내용</lp>
-				<textarea name="qnaContents" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="내용 입력">${DTO.qnaContents}</textarea><br>
+				<label for="contents" class="form-label fw-bold fs-6">내용</label>
+				<textarea name="qnaContents" class="form-control" id="contents" rows="3" placeholder="내용 입력">${DTO.qnaContents}</textarea><br>
 			</div>	
 		</div>
-	</form>
-
 	<!-- QNA 등록 버튼 -->
 	<div class="row justify-content-center mx-auto">
 		<button type="submit" class="btn btn-primary col-2">수정</button>
 	</div>
+	</form>
 
 </div>
 
