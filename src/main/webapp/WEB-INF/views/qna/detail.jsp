@@ -24,13 +24,14 @@
 	<div class="row col-md-4 mx-auto my-5">
 		<c:choose>
 			<c:when test="${not empty DTO.qnaNum}">
-				<h3>번호 : ${DTO.qnaNum}</h3>
-				<h3>제목 : ${DTO.qnaTitle}</h3>
-				<h3>내용 : ${DTO.qnaContents}</h3>
-				<h3>작성자 : ${DTO.qnaWriter}</h3>
-				<h3>작성 날짜 : ${DTO.qnaDate}</h3>
-				<h3>조회수 : ${DTO.qnaHit}</h3>
-				<div>
+				<div class="row mx-auto text-center border-bottom border-dark pb-4">
+					<p class="fs-6">번호 ${DTO.qnaNum} | 작성자 ${DTO.qnaWriter} | 날짜 ${DTO.qnaDate} | 조회수 ${DTO.qnaHit}</p>
+				</div>
+				<div class="row my-4">
+					<p class="fs-4 fw-bold text-center">${DTO.qnaTitle}</p>
+					<p class="fs-5">${DTO.qnaContents}</p>
+				</div>
+				<div class="row justify-content-center mx-auto">
 					<c:if test="${not empty DTO.qnaFileDTO}">
 						<img alt="" src="../resources/upload/qna/${DTO.qnaFileDTO.qnaFileName}">
 					</c:if>
