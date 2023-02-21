@@ -61,7 +61,7 @@ public class QNAController {
 	
 	//Add (DB에 INSERT)
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ModelAndView setQNAAdd(QNADTO qnaDTO, MultipartFile multipartFile, HttpSession Session) throws Exception {
+	public ModelAndView setQNAAdd(QNADTO qnaDTO, MultipartFile multipartFile, HttpSession session) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		int result = qnaService.setQNAAdd(qnaDTO, multipartFile);
