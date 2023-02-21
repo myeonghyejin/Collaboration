@@ -37,10 +37,6 @@ public class Pagination {
 	public Long getTotalPage() {
 		return totalPage;
 	}
-
-	public void setTotalPage(Long totalPage) {
-		this.totalPage = totalPage;
-	}
 	
 	//DB에서 조회할 시작 번호, 끝 번호
 	private Long startRow;
@@ -97,15 +93,15 @@ public class Pagination {
 	}
 	
 	//previous, next
-	public boolean pre;
+	public boolean prev;
 	public boolean next;
 
-	public boolean isPre() {
-		return pre;
+	public boolean isPrev() {
+		return prev;
 	}
 
-	public void setPre(boolean pre) {
-		this.pre = pre;
+	public void setPrev(boolean prev) {
+		this.prev = prev;
 	}
 
 	public boolean isNext() {
@@ -127,7 +123,7 @@ public class Pagination {
 		//매개 변수로 totalCount 선언
 		
 		//2. 총 page의 개수 구하기
-		totalPage = totalCount / this.getPerPage();
+		this.totalPage = totalCount / this.getPerPage();
 		if(totalCount % this.getPerPage() != 0) {
 			totalPage++;
 		}
@@ -151,19 +147,17 @@ public class Pagination {
 		}
 		
 		//6. 현재 block의 시작 번호, 끝 번호 계산
-		startNum = (curBlock - 1) * this.getPerBlock() + 1;
-		lastNum = curBlock * this.getPerBlock();
+		this.startNum = (curBlock - 1) * this.getPerBlock() + 1;
+		this.lastNum = curBlock * this.getPerBlock();
 		
 		//7. 이전 block, 다음 block 유무
 		//이전 block, 현재 block이 첫 번째 block일 경우 없어야 함
-		this.pre = false;
 		if(curBlock < 1) {
-			this.pre = true;
+			this.prev = true;
 		}
 		
 		//다음 block, 현재 block이 마지막 block일 경우 없어야 함
-		this.next = false;
-		if(curBlock == totalBlock) {
+		if(curBlock < totalBlock) {
 			this.next = true;
 		}
 		
