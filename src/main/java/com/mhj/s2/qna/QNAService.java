@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mhj.s2.util.FileManager;
-import com.mhj.s2.util.Pagination;
+import com.mhj.s2.util.FileManagerM;
+import com.mhj.s2.util.PaginationM;
 
 @Service
 public class QNAService {
@@ -21,15 +21,15 @@ public class QNAService {
 	private ServletContext servletContext;
 	
 	@Autowired
-	private FileManager fileManager;
+	private FileManagerM fileManager;
 	
 	/** SELECT **/
 	//List
-	public List<QNADTO> getQNAList(Pagination pagination) throws Exception {
+	public List<QNADTO> getQNAList(PaginationM pagination) throws Exception {
 		Long totalCount = qnaDAO.getQNACount(pagination);
 		
-		pagination.Row();
 		pagination.Pagination(totalCount);
+		pagination.Row();
 		
 		return qnaDAO.getQNAList(pagination);
 	}

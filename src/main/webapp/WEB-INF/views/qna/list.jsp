@@ -56,8 +56,8 @@
 					</a>
 				</li>
 				
-				<li class="page-item ${pagination.prev eq false ? 'disabled' : ''}">
-					<a class="page-link" href="./list?page=${pagination.startNum-1}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous">
+				<li class="page-item ${pagination.page eq 1?'disabled':''}">
+					<a class="page-link" href="./list?page=${pagination.page-1}&condition=${pagination.condition}&search=${pagination.search}" aria-label="Previous">
 						<span aria-hidden="true">&lsaquo;</span>
 					</a>
 				</li>
@@ -66,8 +66,8 @@
 					<li class="page-item"><a class="page-link" href="./list?page=${i}&condition=${pagination.condition}&search=${pagination.search}">${i}</a></li>
 				</c:forEach>
 				
-				<li class="page-item  ${pagination.next? 'disabled' : ''}">
-					<a class="page-link" href="./list?page=${pagination.lastNum+1}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next">
+				<li class="page-item ${pagination.page eq pagination.totalPage?'disabled' : ''}">
+					<a class="page-link" href="./list?page=${pagination.page+1}&condition=${pagination.condition}&search=${pagination.search}"  aria-label="Next">
 						<span aria-hidden="true">&rsaquo;</span>
 					</a>
  				</li>

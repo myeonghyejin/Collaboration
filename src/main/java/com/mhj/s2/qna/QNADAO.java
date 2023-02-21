@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mhj.s2.util.Pagination;
+import com.mhj.s2.util.PaginationM;
 
 @Repository
 public class QNADAO {
@@ -18,7 +18,7 @@ public class QNADAO {
 	
 	/** SELECT **/
 	//List
-	public List<QNADTO> getQNAList(Pagination pagination) throws Exception {
+	public List<QNADTO> getQNAList(PaginationM pagination) throws Exception {
 		return sqlSession.selectList(NAMESAPCE + "getQNAList", pagination);
 	}
 	
@@ -28,7 +28,7 @@ public class QNADAO {
 	}
 	
 	//Count
-	public Long getQNACount(Pagination pagination) throws Exception {
+	public Long getQNACount(PaginationM pagination) throws Exception {
 		return sqlSession.selectOne(NAMESAPCE + "getQNACount", pagination);
 	}
 	

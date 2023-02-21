@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mhj.s2.util.Pagination;
+import com.mhj.s2.util.PaginationM;
 
 @Controller
 @RequestMapping(value="/qna/*")
@@ -23,7 +23,7 @@ public class QNAController {
 	/** SELECT **/
 	//List
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView getQNAList(Pagination pagination) throws Exception {
+	public ModelAndView getQNAList(PaginationM pagination) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		List<QNADTO> ar = qnaService.getQNAList(pagination);

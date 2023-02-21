@@ -1,8 +1,9 @@
 package com.mhj.s2.util;
 
-public class Pagination {
+public class PaginationM {
 	
 	/** Paging **/
+	//page
 	//Client가 보고 싶은 page 번호 (Parameter)
 	private Long page;
 	
@@ -16,7 +17,8 @@ public class Pagination {
 	public void setPage(Long page) {
 		this.page = page;
 	}
-
+	
+	//perPage
 	//한 page에 출력할 row의 개수
 	private Long perPage;
 	
@@ -31,6 +33,7 @@ public class Pagination {
 		this.perPage = perPage;
 	}
 	
+	//totalPage
 	//총 페이지 개수
 	private Long totalPage;
 	
@@ -38,6 +41,7 @@ public class Pagination {
 		return totalPage;
 	}
 	
+	//startRow, lastRow
 	//DB에서 조회할 시작 번호, 끝 번호
 	private Long startRow;
 	private Long lastRow;
@@ -58,6 +62,7 @@ public class Pagination {
 		this.lastRow = lastRow;
 	}
 	
+	//startNum, lastNum
 	//한 block에 출력할 page의 개수
 	private Long startNum;
 	private Long lastNum;
@@ -78,6 +83,7 @@ public class Pagination {
 		this.lastNum = lastNum;
 	}
 	
+	//perBlock
 	//한 block에 출력할 page의 개수
 	private Long perBlock;
 	
@@ -110,6 +116,10 @@ public class Pagination {
 
 	public void setNext(boolean next) {
 		this.next = next;
+	}
+	
+	public PaginationM() {
+		this.perPage = 10L;
 	}
 	
 	//startRow, lastRow를 구하는 메서드
@@ -152,18 +162,15 @@ public class Pagination {
 		
 		//7. 이전 block, 다음 block 유무
 		//이전 block, 현재 block이 첫 번째 block일 경우 없어야 함
-		if(curBlock < 1) {
+		if(curBlock == 1) {
 			this.prev = true;
 		}
-		
 		//다음 block, 현재 block이 마지막 block일 경우 없어야 함
-		if(curBlock < totalBlock) {
-			this.next = true;
-		}
-		
 		//8. 현재 block이 마지막 block과 같다면
+		this.next = true;
 		if(curBlock == totalBlock) {
 			this.lastNum = totalPage;
+			this.next = false;
 		}
 		
 	}
